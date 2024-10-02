@@ -68,77 +68,70 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="categories">
-            <div class="category-panel" style="background-image: url('bacchus-kitchen.jpg');">
-                <div class="category-info">
-                    <h2>Bacchus kitchen</h2>
-                    <span>01</span>
-                </div>
-            </div>
-            <div class="category-panel" style="background-image: url('tellus-doors.jpg');">
-                <div class="category-info">
-                    <h2>Tellus doors</h2>
-                    <span>02</span>
-                </div>
-            </div>
-            <div class="category-panel" style="background-image: url('helios-windows.jpg');">
-                <div class="category-info">
-                    <h2>Hélios windows</h2>
-                    <span>03</span>
-                </div>
-            </div>
-        </div> -->
+
     </section>
 </body>
 <script>
     const slides = document.querySelectorAll('.slide');
-    let currentSlide = 0; // Поточний слайд
-    let slideInterval; // Для збереження інтервалу
+let currentSlide = 0; // Поточний слайд
+let slideInterval; // Для збереження інтервалу
 
-    // Функція для показу слайду за індексом
-    function showSlide(index) {
-        slides.forEach(s => {
-            s.classList.remove('active', 'inactive'); // Очищаємо класи всіх слайдів
-            const details = s.querySelector('.details');
-            details.style.display = 'none'; // Ховаємо всі деталі
-            details.classList.remove('active');
-        });
+// Функція для показу слайду за індексом
+function showSlide(index) {
+    slides.forEach(s => {
+        s.classList.remove('active', 'inactive'); // Очищаємо класи всіх слайдів
+        const details = s.querySelector('.details');
+        details.style.display = 'none'; // Ховаємо всі деталі
+        details.classList.remove('active');
+    });
 
-        const current = slides[index]; // Отримуємо поточний слайд
-        const details = current.querySelector('.details');
+    const current = slides[index]; // Отримуємо поточний слайд
+    const details = current.querySelector('.details');
 
-        current.classList.add('active'); // Додаємо активний клас до поточного слайду
-        details.style.display = 'block'; // Показуємо деталі поточного слайду
-        setTimeout(() => {
-            details.classList.add('active'); // Додаємо анімацію для деталей
-        }, 10);
+    current.classList.add('active'); // Додаємо активний клас до поточного слайду
+    details.style.display = 'block'; // Показуємо деталі поточного слайду
+    setTimeout(() => {
+        details.classList.add('active'); // Додаємо анімацію для деталей
+    }, 10);
 
-        // Позначаємо всі інші слайди як неактивні
-        slides.forEach((s, i) => {
-            if (i !== index) {
-                s.classList.add('inactive');
-            }
-        });
-    }
+    // Позначаємо всі інші слайди як неактивні
+    slides.forEach((s, i) => {
+        if (i !== index) {
+            s.classList.add('inactive');
+        }
+    });
 
-    // Функція для автоматичної зміни слайдів
-    function startSlideShow() {
-        slideInterval = setInterval(() => {
-            currentSlide = (currentSlide + 1) % slides.length; // Переходимо до наступного слайду, якщо досягли кінця — починаємо спочатку
-            showSlide(currentSlide); // Показуємо поточний слайд
-        }, 3000); // Зміна кожні 3 секунди
-    }
+    currentSlide = index; // Оновлюємо поточний індекс слайду
+}
 
-    // Ініціалізація слайдера (показ першого слайду)
-    showSlide(currentSlide);
+// Функція для автоматичної зміни слайдів
+function startSlideShow() {
+    slideInterval = setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length; // Переходимо до наступного слайду, якщо досягли кінця — починаємо спочатку
+        showSlide(currentSlide); // Показуємо поточний слайд
+    }, 3000); // Зміна кожні 3 секунди
+}
 
-    // Запускаємо автоматичну зміну слайдів
-    startSlideShow();
+// Ініціалізація слайдера (показ першого слайду)
+showSlide(currentSlide);
 
-    // Якщо потрібно зупинити автоматичне відтворення, можна додати функцію для паузи
-    function stopSlideShow() {
-        clearInterval(slideInterval);
-    }
+// Запускаємо автоматичну зміну слайдів
+startSlideShow();
+
+// Якщо потрібно зупинити автоматичне відтворення, можна додати функцію для паузи
+function stopSlideShow() {
+    clearInterval(slideInterval);
+}
+
+// Додаємо обробник подій для кліку по кожному слайду
+slides.forEach((slide, index) => {
+    slide.addEventListener('click', () => {
+        stopSlideShow(); // Зупиняємо автоматичну зміну слайдів після кліку
+        showSlide(index); // Показуємо клікнутий слайд
+        startSlideShow(); // Перезапускаємо автоматичне відтворення
+    });
+});
+
 
 </script>
 
