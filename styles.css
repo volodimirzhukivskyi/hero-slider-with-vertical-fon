@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1d1d1d;
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  padding: 20px;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: black;
+  z-index: 1;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.nav a {
+  color: #fff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.hero {
+  display: flex;
+  height: 100vh;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 50%;
+}
+
+.hero h1 {
+  font-size: 4em;
+}
+
+.hero p {
+  margin: 20px 0;
+  font-size: 1.2em;
+  color: #a5a5a5;
+}
+
+.see-more {
+  background-color: #fff;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.categories {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.category-panel {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.category-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+}
+
+.category-info h2 {
+  font-size: 1.5em;
+}
+
+.category-info span {
+  font-size: 1em;
+  color: #a5a5a5;
+}
+.slider-container {
+  display: flex;
+  width: 100%;
+  height: 100vh; /* висота контейнера слайдера */
+}
+
+.slide {
+  position: relative;
+  flex: 1;
+  transition: flex 0.3s ease;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.active {
+  flex: 6; /* 60% */
+}
+
+.inactive {
+  flex: 2; /* 20% */
+}
+.category {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: #fff;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.category h3 {
+  font-size: 1.5em;
+}
+
+.details {
+  display: none;
+  opacity: 0;
+  transform: translateX(100px); /* Зміщення вправо */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  margin-top: 10px;
+  text-align: right;
+}
+
+.details ul {
+  list-style-type: none;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.details ul li {
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.details button {
+  background-color: #ff9800;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Активний стан, коли елемент з'являється */
+.details.active {
+  display: block;
+  opacity: 1;
+  transform: translateX(0); /* Плавно повертається в початкове положення */
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Apartments</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">me.</div>
+        <nav class="nav">
+            <a href="#about">About</a>
+            <a href="#products">Products</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+
+        <div class="slider-container">
+            <div class="slide" id="slide1" onclick="showDetails(1)">
+                <img src="https://stroy.codium.com.ua/wp-content/uploads/2024/09/pexels-life-of-pix-2459-scaled.jpg"
+                    alt="Image 1">
+                <div class="category">
+                    <h3>КОМПЛЕКСНИЙ РЕМОНТ</h3>
+                    <div class="details" id="details1">
+                        <ul>
+                            <li>Дизайн-проект</li>
+                            <li>Оздоблювальні роботи</li>
+                            <li>Меблювання та декор</li>
+                        </ul>
+                        <button>Замовити консультацію</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" id="slide2" onclick="showDetails(2)">
+                <img src="https://stroy.codium.com.ua/wp-content/uploads/2024/09/pexels-expect-best-79873-323780-scaled.jpg"
+                    alt="Image 2">
+                <div class="category">
+                    <h3>РЕМОНТ БУДИНКІВ</h3>
+                    <div class="details" id="details2">
+                        <ul>
+                            <li>Реставрація будинків</li>
+                            <li>Зовнішнє оздоблення</li>
+                            <li>Інженерні рішення</li>
+                        </ul>
+                        <button>Замовити консультацію</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" id="slide3" onclick="showDetails(3)">
+                <img src="https://stroy.codium.com.ua/wp-content/uploads/2024/09/pexels-francesco-ungaro-28589265-scaled.jpg"
+                    alt="Image 3">
+                <div class="category">
+                    <h3>ФАСАДНІ РОБОТИ</h3>
+                    <div class="details" id="details3">
+                        <ul>
+                            <li>Теплоізоляція та гідроізоляція</li>
+                            <li>Декоративне оздоблення</li>
+                        </ul>
+                        <button>Замовити консультацію</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="categories">
+            <div class="category-panel" style="background-image: url('bacchus-kitchen.jpg');">
+                <div class="category-info">
+                    <h2>Bacchus kitchen</h2>
+                    <span>01</span>
+                </div>
+            </div>
+            <div class="category-panel" style="background-image: url('tellus-doors.jpg');">
+                <div class="category-info">
+                    <h2>Tellus doors</h2>
+                    <span>02</span>
+                </div>
+            </div>
+            <div class="category-panel" style="background-image: url('helios-windows.jpg');">
+                <div class="category-info">
+                    <h2>Hélios windows</h2>
+                    <span>03</span>
+                </div>
+            </div>
+        </div> -->
+    </section>
+</body>
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0; // Поточний слайд
+    let slideInterval; // Для збереження інтервалу
+
+    // Функція для показу слайду за індексом
+    function showSlide(index) {
+        slides.forEach(s => {
+            s.classList.remove('active', 'inactive'); // Очищаємо класи всіх слайдів
+            const details = s.querySelector('.details');
+            details.style.display = 'none'; // Ховаємо всі деталі
+            details.classList.remove('active');
+        });
+
+        const current = slides[index]; // Отримуємо поточний слайд
+        const details = current.querySelector('.details');
+
+        current.classList.add('active'); // Додаємо активний клас до поточного слайду
+        details.style.display = 'block'; // Показуємо деталі поточного слайду
+        setTimeout(() => {
+            details.classList.add('active'); // Додаємо анімацію для деталей
+        }, 10);
+
+        // Позначаємо всі інші слайди як неактивні
+        slides.forEach((s, i) => {
+            if (i !== index) {
+                s.classList.add('inactive');
+            }
+        });
+    }
+
+    // Функція для автоматичної зміни слайдів
+    function startSlideShow() {
+        slideInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length; // Переходимо до наступного слайду, якщо досягли кінця — починаємо спочатку
+            showSlide(currentSlide); // Показуємо поточний слайд
+        }, 3000); // Зміна кожні 3 секунди
+    }
+
+    // Ініціалізація слайдера (показ першого слайду)
+    showSlide(currentSlide);
+
+    // Запускаємо автоматичну зміну слайдів
+    startSlideShow();
+
+    // Якщо потрібно зупинити автоматичне відтворення, можна додати функцію для паузи
+    function stopSlideShow() {
+        clearInterval(slideInterval);
+    }
+
+</script>
+
+</html>
