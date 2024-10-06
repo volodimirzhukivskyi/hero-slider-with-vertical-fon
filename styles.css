@@ -216,6 +216,7 @@ body {
 .list li:hover::before {
   color: #ff7000; /* Зміна кольору при наведенні */
 }
+
 @media only screen and (max-width: 768px) {
   .vertical-text {
     writing-mode: horizontal-tb;
@@ -224,4 +225,52 @@ body {
   .slider-container {
     flex-direction: column;
   }
+}
+
+.search-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  /* z-index: 29; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pulse-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Округлість контейнера */
+  background-color: rgba(0, 0, 0, 0.6); /* Напівтемний фон */
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 30px rgba(0, 0, 0, 0);
+  }
+}
+
+.svg_plus,
+.svg_minus {
+  position: absolute;
+  fill: #fff; /* Колір іконок */
+  transition: fill 0.3s ease;
+}
+
+.pulse-container:hover .svg_plus,
+.pulse-container:hover .svg_minus {
+  fill: #ff9800; /* Зміна кольору при наведенні */
 }
