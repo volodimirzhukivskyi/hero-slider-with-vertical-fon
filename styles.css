@@ -122,8 +122,14 @@ body {
 }
 
 .inactive {
-  opacity: 0.5;
   flex: 2; /* 20% */
+}
+.inactive:after {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 .category {
@@ -216,26 +222,16 @@ body {
 .list li:hover::before {
   color: #ff7000; /* Зміна кольору при наведенні */
 }
-
-@media only screen and (max-width: 768px) {
-  .vertical-text {
-    writing-mode: horizontal-tb;
-    transform: none;
-  }
-  .slider-container {
-    flex-direction: column;
-  }
-}
-
 .search-wrapper {
+  display: none;
+  z-index: 1;
   position: absolute;
   top: 0;
   bottom: 0;
   margin: auto;
   left: 0;
   right: 0;
-  /* z-index: 29; */
-  display: flex;
+
   align-items: center;
   justify-content: center;
 }
@@ -247,19 +243,19 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 50%; /* Округлість контейнера */
-  background-color: rgba(0, 0, 0, 0.6); /* Напівтемний фон */
+  background-color: rgba(255, 255, 255, 0.2); /* Світліший напівпрозорий фон */
   animation: pulse 2s infinite ease-in-out;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); /* Початкова біла тінь */
   }
   50% {
-    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.3); /* Світліший білий */
   }
   100% {
-    box-shadow: 0 0 0 30px rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0); /* Повністю прозора тінь */
   }
 }
 
@@ -273,4 +269,17 @@ body {
 .pulse-container:hover .svg_plus,
 .pulse-container:hover .svg_minus {
   fill: #ff9800; /* Зміна кольору при наведенні */
+}
+.slide.inactive:hover .search-wrapper {
+  display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+  .vertical-text {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+  .slider-container {
+    flex-direction: column;
+  }
 }
