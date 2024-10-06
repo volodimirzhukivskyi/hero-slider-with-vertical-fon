@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #1d1d1d;
   color: #fff;
 }
@@ -20,6 +20,11 @@ body {
   left: 0;
   background: black;
   z-index: 1;
+}
+
+.title {
+  text-align: left;
+  margin-bottom: 20px;
 }
 
 .logo {
@@ -92,6 +97,7 @@ body {
   font-size: 1em;
   color: #a5a5a5;
 }
+
 .slider-container {
   display: flex;
   width: 100%;
@@ -101,7 +107,7 @@ body {
 .slide {
   position: relative;
   flex: 1;
-  transition: flex 0.3s ease;
+  transition: flex 0.6s ease-in-out; /* Зміна тривалості і типу анімації */
   overflow: hidden;
 }
 
@@ -116,16 +122,19 @@ body {
 }
 
 .inactive {
+  opacity: 0.5;
   flex: 2; /* 20% */
 }
+
 .category {
   position: absolute;
   bottom: 20px;
   left: 20px;
   right: 20px;
   color: #fff;
-  padding: 5px;
+  padding: 15px;
   background-color: rgba(0, 0, 0, 0.5);
+  width: fit-content;
 }
 
 .category h3 {
@@ -136,19 +145,13 @@ body {
   display: none;
   opacity: 0;
   transform: translateX(100px); /* Зміщення вправо */
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out; /* Плавніший перехід */
   margin-top: 10px;
   text-align: right;
 }
 
-.details ul {
-  list-style-type: none;
-  margin-bottom: 10px;
-  text-align: left;
-}
-
 .details ul li {
-  font-size: 0.9em;
+  font-size: 1em;
   margin-bottom: 5px;
 }
 
@@ -158,6 +161,11 @@ body {
   padding: 8px 15px;
   border: none;
   cursor: pointer;
+  transition: background-color 0.4s ease-in-out; /* Плавний перехід кольору при наведенні */
+}
+
+.details button:hover {
+  background-color: #ff7000; /* Зміна кольору на темніший при наведенні */
 }
 
 /* Активний стан, коли елемент з'являється */
@@ -165,4 +173,55 @@ body {
   display: block;
   opacity: 1;
   transform: translateX(0); /* Плавно повертається в початкове положення */
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 2px;
+  font-size: 20px;
+  color: #fff;
+  border-radius: 5px;
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Плавний перехід для вертикального тексту */
+}
+
+.vertical-text.active {
+  display: none;
+}
+
+.list {
+  counter-reset: list-counter; /* Обрізка лічильника */
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.list li {
+  counter-increment: list-counter; /* Інкремент лічильника */
+  list-style: none; /* Приховати стандартні маркери списку */
+  position: relative; /* Потрібно для псевдоелемента */
+  padding-left: 30px; /* Додаємо відступ для нумерації */
+}
+
+.list li::before {
+  content: counter(list-counter, decimal-leading-zero); /* Додаємо 01, 02 і т.д. */
+  position: absolute;
+  left: 0;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #ff9800; /* Колір для нумерації */
+  font-weight: bold; /* Нумерація жирним */
+  transition: color 0.3s ease-in-out; /* Плавна зміна кольору */
+}
+
+.list li:hover::before {
+  color: #ff7000; /* Зміна кольору при наведенні */
+}
+@media only screen and (max-width: 768px) {
+  .vertical-text {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+  .slider-container {
+    flex-direction: column;
+  }
 }
